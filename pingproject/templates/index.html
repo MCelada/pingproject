@@ -1,0 +1,31 @@
+<!-- pingapp/templates/pingapp/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PingApp</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<button id="pingButton" onclick="ping()">Ping</button>
+
+<script>
+function ping() {
+    $.ajax({
+        url: '/pingapp/ping/',
+        success: function(response) {
+            if (response.status === 'success') {
+                $('#pingButton').css('background-color', 'green');
+            } else {
+                $('#pingButton').css('background-color', 'red');
+            }
+        },
+        error: function() {
+            $('#pingButton').css('background-color', 'red');
+        }
+    });
+}
+</script>
+
+</body>
+</html>
